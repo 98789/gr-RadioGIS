@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<block>
+  <name>fft</name>
+  <key>RadioGIS_fft</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <import>from gnuradio.fft import window</import>
+  <make>RadioGIS.fft($N, $W, $window)</make>
+
+  <param>
+    <name>FFT size</name>
+    <key>N</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Window</name>
+    <key>window</key>
+    <type>real_vector</type>
+  </param>
+
+  <param>
+    <name>Weight</name>
+    <key>W</key>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+    <vlen>$N</vlen>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>complex</type>
+    <vlen>$N</vlen>
+  </source>
+</block>

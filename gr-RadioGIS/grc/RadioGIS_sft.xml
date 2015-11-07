@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<block>
+  <name>sft</name>
+  <key>RadioGIS_sft</key>
+  <category>RadioGIS</category>
+  <import>from RadioGIS.sft import sft</import>
+  <import>from RadioGIS.sft import sft_exponential</import>
+  <import>from RadioGIS.sft import sft_triangular</import>
+  <import>from RadioGIS.sft import sft_binomial</import>
+  <import>from RadioGIS.sft import sft_power</import>
+  <import>from gnuradio.fft import window</import>
+  <make>sft_$(base)($N, $window)</make>
+
+  <param>
+    <name>FFT size</name>
+    <key>N</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Window</name>
+    <key>window</key>
+    <type>real_vector</type>
+  </param>
+
+  <param>
+    <name>Base</name>
+    <key>base</key>
+    <type>enum</type>
+        <option>
+            <name>Complex exponential</name>
+            <key>exponential</key>
+        </option>
+        <option>
+            <name>Triangular</name>
+            <key>triangular</key>
+        </option>
+        <option>
+            <name>Binomial</name>
+            <key>binomial</key>
+        </option>
+        <option>
+            <name>Power</name>
+            <key>power</key>
+        </option>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+    <vlen>$N</vlen>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>complex</type>
+    <vlen>$N</vlen>
+  </source>
+</block>

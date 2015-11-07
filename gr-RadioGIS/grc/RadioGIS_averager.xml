@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<block>
+  <name>averager</name>
+  <key>RadioGIS_averager</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <make>RadioGIS.averager($N, $n)</make>
+
+  <param>
+    <name>Vector size</name>
+    <key>N</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Averager size</name>
+    <key>n</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+    <vlen>$N * $n</vlen>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>$N</vlen>
+  </source>
+</block>

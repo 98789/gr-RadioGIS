@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<block>
+  <name>dbm</name>
+  <key>RadioGIS_dbm</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <make>RadioGIS.dbm()</make>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>
