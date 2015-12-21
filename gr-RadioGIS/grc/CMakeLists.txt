@@ -20,5 +20,6 @@ install(FILES
     RadioGIS_averager.xml
     RadioGIS_sft.xml
     RadioGIS_fft.xml
-    RadioGIS_dbm.xml DESTINATION share/gnuradio/grc/blocks
+    RadioGIS_dbm.xml
+    RadioGIS_data_submitter.xml DESTINATION share/gnuradio/grc/blocks
 )

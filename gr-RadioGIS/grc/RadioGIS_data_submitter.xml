@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<block>
+  <name>data_submitter</name>
+  <key>RadioGIS_data_submitter</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <make>RadioGIS.data_submitter($N)</make>
+
+  <param>
+    <name>Vector size</name>
+    <key>N</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+    <vlen>$N</vlen>
+  </sink>
+
+</block>

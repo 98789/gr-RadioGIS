@@ -34,7 +34,8 @@ GR_PYTHON_INSTALL(
     averager.py
     sft.py
     fft.py
-    dbm.py DESTINATION ${GR_PYTHON_DIR}/RadioGIS
+    dbm.py
+    data_submitter.py DESTINATION ${GR_PYTHON_DIR}/RadioGIS
 )
 
 ########################################################################
@@ -48,3 +49,4 @@ GR_ADD_TEST(qa_averager ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_aver
 GR_ADD_TEST(qa_sft ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sft.py)
 GR_ADD_TEST(qa_fft ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fft.py)
 GR_ADD_TEST(qa_dbm ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dbm.py)
+GR_ADD_TEST(qa_data_submitter ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_submitter.py)
