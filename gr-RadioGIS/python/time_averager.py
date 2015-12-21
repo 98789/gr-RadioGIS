@@ -23,29 +23,41 @@ import numpy
 import time
 from gnuradio import gr
 
-class dbm(gr.sync_block):
+
+class time_averager(gr.sync_block):
     """
-    convert data to dbm
+    Average for t seconds
     """
-    def __init__(self):
-        self.enabled = True
+    def __init__(self, N, t=300):
+        self.N = N
+        self.l = time.time() + t
+        self.t = t
+        self.num = 0
+        self.output = numpy.zeros([2 * numpy.dtype(numpy.float32).itemsize, N])
         gr.sync_block.__init__(self,
-            name="dbm",
-            in_sig=[numpy.float32],
-            out_sig=[numpy.float32])
+            name="time_averager",
+            in_sig=[(numpy.float32, self.N)],
+            out_sig=[(numpy.float32, self.N)])
 
 
     def work(self, input_items, output_items):
         in0 = input_items[0]
         out = output_items[0]
 
-        if self.enabled:
-            out[:] = 20 * numpy.log10(in0) - 30
+        if time.time() < self.l:
+            try:
+                self.output[:in0.shape[0], :] += in0
+                self.num += 1
+            except:
+                pass
+            out[:] = 0
         else:
-            out[:] = in0
+            out[:] = self.output[:out.shape[0], :] / self.num
+            self.l += self.t
+            self.num = 0
+            self.output = numpy.zeros([2 * numpy.dtype(numpy.float32).itemsize, self.N])
 
+        out[:] = numpy.average(out, 0)
+        
         return len(output_items[0])
-
-    def set_enabled(self, status):
-        self.enabled = status
 

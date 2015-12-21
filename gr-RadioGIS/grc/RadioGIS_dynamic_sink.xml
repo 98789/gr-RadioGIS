@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>dynamic_sink</name>
+  <key>RadioGIS_dynamic_sink</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <make>RadioGIS.dynamic_sink($N, $n)</make>
+
+  <param>
+    <name>Vector size</name>
+    <key>N</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Num of vectors</name>
+    <key>n</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+    <vlen>$N</vlen>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>$N * $n</vlen>
+  </source>
+</block>

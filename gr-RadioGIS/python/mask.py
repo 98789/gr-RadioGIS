@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # 
-# Copyright 2015 RadioGIS.
+# Copyright 2015 <+YOU OR YOUR COMPANY+>.
 # 
 # This is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,32 +20,41 @@
 # 
 
 import numpy
-import time
 from gnuradio import gr
 
-class dbm(gr.sync_block):
+class mask(gr.sync_block):
     """
-    convert data to dbm
+    Generate mask
     """
-    def __init__(self):
-        self.enabled = True
+    def __init__(self, x, y, p):
+        self.x = x
+        self.y = y
+        self.p = p
         gr.sync_block.__init__(self,
-            name="dbm",
-            in_sig=[numpy.float32],
-            out_sig=[numpy.float32])
+            name="mask",
+            in_sig=None,
+            out_sig=[(numpy.float32, self.p)])
 
 
     def work(self, input_items, output_items):
-        in0 = input_items[0]
         out = output_items[0]
 
-        if self.enabled:
-            out[:] = 20 * numpy.log10(in0) - 30
-        else:
-            out[:] = in0
-
+        out[:] = self.get_mask()
         return len(output_items[0])
 
-    def set_enabled(self, status):
-        self.enabled = status
+    def get_mask(self):
+
+        axis = numpy.linspace(self.x[0], self.x[-1], self.p)
+        mask = []
+        for i in xrange(len(self.x)-1):
+            if i < len(self.x) - 2:
+                filtered_axis = axis[(axis < self.x[i+1]) & (axis >= self.x[i])]
+                numel = filtered_axis.shape[0]
+                mask += (numpy.linspace(self.y[i], self.y[i+1], numel, False)).tolist()
+            else:
+                filtered_axis = axis[(axis <= self.x[i+1]) & (axis >= self.x[i])]
+                numel = filtered_axis.shape[0]
+                mask += (numpy.linspace(self.y[i], self.y[i+1], numel, True)).tolist()
+
+        return mask
 

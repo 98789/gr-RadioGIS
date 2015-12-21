@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>Non-Zero File Sink</name>
+  <key>RadioGIS_non_zero_file_sink</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <make>RadioGIS.non_zero_file_sink($N, $n, $File)</make>
+  
+  <param>
+    <name>vec lenght</name>
+    <key>N</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>num vectors</name>
+    <key>n</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>File</name>
+    <key>File</key>
+    <type>String</type>
+  </param>
+  
+  <sink>
+    <name>in</name>
+    <type>float</type>
+    <vlen>$N</vlen>
+  </sink>
+
+</block>

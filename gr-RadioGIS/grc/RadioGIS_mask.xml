@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<block>
+  <name>mask</name>
+  <key>RadioGIS_mask</key>
+  <category>RadioGIS</category>
+  <import>import RadioGIS</import>
+  <make>RadioGIS.mask($x, $y, $p)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Frequencies</name>
+    <key>x</key>
+    <type>raw</type>
+  </param>
+
+  <param>
+    <name>Amplitudes</name>
+    <key>y</key>
+    <type>raw</type>
+  </param>
+
+  <param>
+    <name>num of points</name>
+    <key>p</key>
+    <type>raw</type>
+  </param>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>$p</vlen>
+  </source>
+</block>
