@@ -38,6 +38,7 @@ GR_PYTHON_INSTALL(
     dynamic_sink.py
     mask.py
     time_averager.py
+    data_submitter.py
     non_zero_file_sink.py DESTINATION ${GR_PYTHON_DIR}/RadioGIS
 )
 
@@ -56,3 +57,4 @@ GR_ADD_TEST(qa_dynamic_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_
 GR_ADD_TEST(qa_mask ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_mask.py)
 GR_ADD_TEST(qa_time_averager ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_time_averager.py)
 GR_ADD_TEST(qa_non_zero_file_sink ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_non_zero_file_sink.py)
+GR_ADD_TEST(qa_data_submitter ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_data_submitter.py)
