@@ -4,12 +4,18 @@
   <key>RadioGIS_data_submitter</key>
   <category>RadioGIS</category>
   <import>import RadioGIS</import>
-  <make>RadioGIS.data_submitter($N)</make>
+  <make>RadioGIS.data_submitter($N, $gps)</make>
 
   <param>
     <name>Vector size</name>
     <key>N</key>
     <type>int</type>
+  </param>
+
+  <param>
+    <name>GPS</name>
+    <key>gps</key>
+    <type>raw</type>
   </param>
 
   <sink>

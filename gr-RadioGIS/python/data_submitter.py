@@ -22,19 +22,28 @@
 import consumer
 import numpy
 import time
+from datetime import datetime, timedelta
 from gnuradio import gr
 
 class data_submitter(gr.sync_block):
     """
     docstring for block data_submitter
     """
-    def __init__(self, N):
+    def __init__(self, N, gps):
         self.N = N
+        self.gps = gps
         gr.sync_block.__init__(self,
             name="data_submitter",
             in_sig=[(numpy.float32, self.N)],
             out_sig=None)
+     
+    def split_pos(self):
+        pos = self.gps.split()
+        lat, lon = pos[1], pos[3]
+        return float(lon), float(lat)
 
+    def set_gps(self, gps):
+        self.gps = gps
 
     def work(self, input_items, output_items):
         in0 = input_items[0].astype("string")
@@ -46,11 +55,14 @@ class data_submitter(gr.sync_block):
 
         data = data[:-2]
 
-	date = time.strftime('%d/%m/%Y %H:%M:%S')
+        date = datetime.utcnow() - timedelta(hours=5) #COT Bogota, -5 UTC
+        date = date.strftime('%d/%m/%Y %H:%M:%S')
         time.sleep(2)
         server = "http://radiogis.uis.edu.co/sensores/medidas"
 
-        consumer.send_raw(date, 1, data, 2, 3, -73.45, 7.87, 27, url=server)
+        lat, lon = self.split_pos()
+        print lat, lon, date
+        consumer.send_raw(date, 1, data, 2, 3, lat, lon, 27, url=server)
 
 
         return len(input_items[0])
