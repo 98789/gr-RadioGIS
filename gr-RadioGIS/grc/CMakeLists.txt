@@ -25,6 +25,5 @@ install(FILES
     RadioGIS_mask.xml
     RadioGIS_time_averager.xml
     RadioGIS_data_submitter.xml
-    RadioGIS_non_zero_file_sink.xml
-    RadioGIS_unit_selector.xml DESTINATION share/gnuradio/grc/blocks
+    RadioGIS_non_zero_file_sink.xml DESTINATION share/gnuradio/grc/blocks
 )
